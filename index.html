@@ -14,132 +14,90 @@
             color: #fff;
         }
 
-        /* Полупрозрачный фон поверх фона */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* полупрозрачность */
-            z-index: 0;
+        /* Анимация текста */
+        .animated-text {
+            animation: blink 2s infinite;
+            font-size: 1.1em;
+            color: gold;
+            margin-top: 20px;
+            text-shadow: 1px 1px 2px black;
         }
 
-        /* Контент — поверх overlay */
-        .content {
-            position: relative;
-            z-index: 1;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Основной контейнер */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             text-align: center;
-        }
-
-        /* Кнопка "Помощь" в правом верхнем углу */
-        .help-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: rgba(255, 0, 0, 0.8);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 2;
-        }
-
-        .info-box {
-            display: none;
-            position: absolute;
-            top: 60px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid red;
-            width: 300px;
-            text-align: left;
-            z-index: 2;
-        }
-
-        /* Блок с информацией */
-        .info {
-            background-color: rgba(0, 0, 0, 0.7);
             padding: 20px;
-            border-radius: 10px;
-            margin: 40px auto;
-            max-width: 600px;
-            box-shadow: 0 0 10px gold;
         }
 
         h1 {
             font-size: 2.2em;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             color: gold;
             text-shadow: 2px 2px #000;
             letter-spacing: 2px;
         }
 
-        p {
-            font-size: 1.1em;
-            margin: 10px 0;
-            color: #f2f2f2;
-        }
-
+        /* Полупрозрачное окно видеоконференции */
         iframe {
             width: 90%;
             max-width: 800px;
             height: 500px;
             border: none;
-            margin-top: 30px;
             border-radius: 12px;
             box-shadow: 0 0 15px #00ffff;
+            opacity: 0.95;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Кнопка скачивания */
+        .download-btn {
+            margin-top: 20px;
+            background-color: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: rgba(255, 0, 0, 1);
         }
     </style>
 </head>
 <body>
 
-<!-- Полупрозрачный слой -->
-<div class="overlay"></div>
+    <div class="container">
+        <h1>⚔️ GX ИГРОВАЯ КОМНАТА ⚔️</h1>
 
-<!-- Кнопка помощи -->
-<button class="help-button" onclick="toggleInfo()">Помощь</button>
+        <!-- Встроенный Jitsi чат -->
+        <iframe 
+            src="https://meet.jit.si/GX- ИгроваяКомната"
+            allow="camera; microphone; fullscreen; display-capture"
+        ></iframe>
 
-<!-- Окно информации -->
-<div class="info-box" id="infoBox">
-    <strong>Как подключиться:</strong><br>
-    1. Скачайте RadminVPN с официального сайта.<br>
-    2. Создайте или присоединитесь к вирт.сети.<br>
-    3. Запустите игру в режиме LAN.<br>
-    4. Используйте видеочат ниже для связи.
-</div>
+        <!-- Анимированный текст -->
+        <div class="animated-text">
+            🔽 Скачайте RadminVPN и присоединяйтесь к вирт.сети!
+        </div>
 
-<!-- Основной контент -->
-<div class="content">
-    <h1>⚔️ GX ИГРОВАЯ КОМНАТА ⚔️</h1>
-
-    <div class="info">
-        <p>Добро пожаловать в нашу онлайн-встречу!</p>
-        <p>Сейчас мы будем играть вместе по сети через виртуальную LAN.</p>
-        <p>📌 Как начать:</p>
-        <p>1. Запустите RadminVPN и подключитесь к нашей вирт. сети.</p>
-        <p>2. Запустите игру в режиме LAN / по локальной сети.</p>
-        <p>3. Общайтесь через видео-чат ниже.</p>
+        <!-- Кнопка скачивания -->
+        <a href="https://www.radmin-vpn.com/download/ " target="_blank">
+            <button class="download-btn">Скачать RadminVPN</button>
+        </a>
     </div>
-
-    <!-- Встроенный Jitsi чат -->
-    <iframe 
-        src="https://meet.jit.si/GX- ИгроваяКомната"
-        allow="camera; microphone; fullscreen; display-capture"
-    ></iframe>
-</div>
-
-<script>
-    function toggleInfo() {
-        const infoBox = document.getElementById("infoBox");
-        infoBox.style.display = infoBox.style.display === "block" ? "none" : "block";
-    }
-</script>
 
 </body>
 </html>
